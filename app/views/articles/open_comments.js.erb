@@ -1,0 +1,3 @@
+$("#<%=@article.id%>-set-comments").html("<%= escape_javascript(render('close_comments')) %>");
+$("#<%=@article.id%>-article-comments").html("");
+$("#close_comments").html("<%= escape_javascript(render('front_close_comments')) %>");

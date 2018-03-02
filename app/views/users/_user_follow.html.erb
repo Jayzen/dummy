@@ -1,0 +1,6 @@
+<%= form_for(:relationship, url: relationships_path, method: :post, remote: true) do |f| %>
+  <div><%= hidden_field_tag :followed_id, @user.id %></div>
+  <button type="submit" class="btn btn-primary">
+    <i class="fa fa-user fa-fw"></i>关注
+  </button>
+<% end %>

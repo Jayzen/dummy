@@ -1,0 +1,11 @@
+<div class="card border-secondary mb-3">
+  <%= render 'user_left_head' %>
+  <hr class="mb-0 mt-0">
+  <div id="stats">
+    <%= render 'stats' %>
+  </div>
+  <hr class="mb-0 mt-0">
+  <% unless @user == current_user %>
+    <%= render 'follow_form' %>
+  <% end %>
+</div>

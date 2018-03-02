@@ -1,0 +1,27 @@
+<% @users.each_slice(4) do |users| %>
+  <div class="d-flex flex-row justify-content-between mt-4 ml-4 mr-4">
+    <% users.each do |user| %>
+      <div class="d-flex flex-row">
+        <div class="mr-1">
+          <% if user.avatar.to_s.size == 0 %>
+            <% if user.gender == "male" %>
+              <%= image_tag "male.jpeg", size: "64x64", class: "rounded-circle" %>
+            <% else %>
+              <%= image_tag "female.jpg", size: "64x64", class: "rounded-circle" %>
+            <% end -%>
+          <% else %>
+            <%= image_tag user.avatar.large.url, size: "64x64", class: "rounded-circle" %>
+          <% end -%>
+        </div>
+        <div class="d-flex flex-column">
+          <div>
+            <%= link_to "#{user.name}", user_path(user), class: "text-dark font-weight-bold" %>
+          </div>
+          <div id="follow">
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end -%>
+

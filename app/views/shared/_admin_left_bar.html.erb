@@ -1,0 +1,19 @@
+<div class='col-md-2'>
+    <div class="card">
+      <div class="card-header text-secondary text-center">
+        管理员设置
+      </div>
+      <div class="card-body d-flex flex-column row-hl">
+        <div class="p-1 item-hl align-self-center">
+          <a href="<%= users_path %>", class="btn <%= controller_name == 'users' ? 'btn-primary' : 'btn-outline-secondary' %>">
+            <i class="fa fa-users fa-fw"></i> 用户管理
+          </a>
+        </div>
+        <div class="p-1 item-hl align-self-center">
+          <a href="<%= categories_path %>", class="btn <%= controller_name == 'categories' ? 'btn-primary' : 'btn-outline-secondary' %>">
+            <i class="fa fa-tag fa-fw"></i> 标签管理
+          </a>
+        </div>
+      </div>
+    </div>
+</div>

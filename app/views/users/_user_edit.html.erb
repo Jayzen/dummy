@@ -1,0 +1,64 @@
+<div class="col-md-10">
+    <div class="card">
+      <div class="card-header text-secondary text-center">
+        基本信息
+      </div>
+      <div class="card-body">
+        <%= render 'shared/errors' %>
+        <%= form_for(@user, url: user_path(@user), method: 'put') do |f| %>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-secondary">用户名</label>
+          <div class="col-sm-10">
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-secondary">性别</label>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <%= f.radio_button :gender, "male", class: "form-check-input", checked: "checked" %>
+              <label class="form-check-label text-secondary">
+                美男子
+              </label>
+            </div>
+            <div class="form-check">
+              <%= f.radio_button :gender, "female", class: "form-check-input" %>
+              <label class="form-check-label text-secondary">
+                美少女
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-0">
+          <label class="col-sm-2 col-form-label text-secondary">邮箱</label>
+          <div class="col-sm-10">
+            <%= f.email_field :email, class: "form-control", disabled: "false" %>
+          </div>
+        </div>
+        
+        <div class="form-group row mt-0">
+          <label class="col-sm-2 col-form-label text-secondary"> </label>
+          <div class="col-sm-10">
+            <label class="text-secondary"><small><strong>用户注册后邮箱名称不能修改!</strong></small></label>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-secondary">个人说明</label>
+          <div class="col-sm-10">
+            <%= f.text_area :description, class: "form-control" %>
+          </div>
+        </div> 
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label"></label>
+          <div class="col-sm-10">
+            <%= f.submit "更新资料", class: "btn btn-primary"%>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+</div>

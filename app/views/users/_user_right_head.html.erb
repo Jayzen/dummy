@@ -1,0 +1,20 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link text-secondary <%= 'active' if action_name == 'show' %>" href="<%= user_path(@user) %>">个人信息</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-secondary <%= 'active' if action_name == 'likes' %>" href="<%= likes_user_path(@user) %>">喜欢文章</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-secondary <%= 'active' if action_name == 'follows' %>" href="<%= follows_user_path(@user) %>">关注文章</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-secondary <%= 'active' if action_name == 'keeps' %> " href="<%= keeps_user_path(@user) %>">收藏文章</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-secondary <%= 'active' if action_name == 'following' %> " href="<%= following_user_path(@user) %>">正在关注</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-secondary <%= 'active' if action_name == 'followers' %>" href="<%= followers_user_path(@user) %>">关注者</a>
+  </li>
+</ul>

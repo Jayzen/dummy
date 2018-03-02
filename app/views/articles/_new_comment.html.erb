@@ -1,0 +1,21 @@
+<div class="mb-3">
+  <%= form_for @comment, url: comments_path, method: 'post' do |f| %>
+    <%= hidden_field_tag :id, @article.id %>
+    <% unless @comment.errors.blank? %>
+      <div class="alert alert-danger">
+        <ul class="list-unstyled">
+          <% @comment.errors.messages.values.flatten.each do |error| %>
+            <li><i class="fa fa-exclamation-circle"></i> <%= error %></li>
+          <% end -%>
+        </ul>
+      </div>
+    <% end -%>
+
+    <div class="form-group mb-1">
+      <%= f.text_area :content, placeholder: "输入评论内容....",  class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "提交评论", class: "btn btn-outline-secondary" %>
+    </div>
+  <% end -%>
+</div>

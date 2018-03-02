@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'user_left' %>
+  </div>
+  <div class="col-md-9">
+    <%= render 'user_right_head' %>
+    <div class="d-flex flex-column text-secondary mt-4">
+      <div>
+        <p>邮箱: <strong><%= @user.email %></strong></p>
+      </div>
+      <div>
+        <p>个人说明:  <strong><%= @user.description %></strong></p>
+      </div>
+    </div>
+  </div>
+</div>

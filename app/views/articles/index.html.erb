@@ -1,0 +1,88 @@
+<div>
+  <div class="card mb-3">
+    <div class="card-header text-secondary text-center">
+      文章列表
+    </div>
+    <div class="card-body">
+      <%= form_tag remove_select_articles_path, method: :delete do %>
+        <table class="table table-sm table-hover table-striped">
+          <thead>
+            <tr class="text-secondary">
+              <th></th>
+              <th>标题</th>
+              <th>发布时间</th>
+              <th>编辑</th>
+              <th>删除</th>
+              <th class="text-center">发布/取消发布</th>
+              <th class="text-center">开放/关闭评论</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @articles.each do |article| %>
+              <tr class="text-secondary">
+                <td><%= check_box_tag "[article_ids][]", article.id, false, class: "selectable" %></td>
+                <td class="d-flex flex-row">
+                  <div>
+                    <%=link_to "#{article.title}", article_path(article), class: "text-secondary" %>
+                  </div>
+                  <div id="<%= article.id %>-article" class="ml-1 mr-1">
+                    <% if article.status? %>
+                      <span class='badge badge-primary'>已发布</span>
+                    <% end -%>
+                  </div>
+                  <div id="<%= article.id %>-article-comments" class="ml-1 mr-1">
+                    <% unless article.set_comments? %>
+                      <span class='badge badge-primary'>评论已关闭</span>
+                    <% end -%>
+                  </div>
+                </td>
+                <td><small><%= article.created_at.strftime("%F") %></small></td>
+                <td><%= link_to "编辑", edit_article_path(article), class: "btn btn-secondary btn-sm" %></td>
+                <td><%= link_to "删除", article, method: :delete, data: { confirm: "确定删除?" }, class: "btn btn-secondary btn-sm" %></td>
+                <td id="<%= article.id %>-release" class="text-center">
+                  <% if article.status? %>
+                    <%= link_to "取消发布", unrelease_article_path(article), class: "btn btn-secondary btn-sm", remote: true%>
+                  <% else %>
+                    <%= link_to "发布", release_article_path(article), class: "btn btn-secondary btn-sm", remote: true%>
+                  <% end -%>
+                </td>
+                <td id="<%= article.id %>-set-comments" class="text-center">
+                  <% if article.set_comments? %>
+                    <%= link_to "关闭评论", close_comments_article_path(article), class: "btn btn-secondary btn-sm", remote: true%>
+                  <% else %>
+                    <%= link_to "开放评论", open_comments_article_path(article), class: "btn btn-secondary btn-sm", remote: true%>
+                  <% end -%>
+                </td>
+              </tr>
+            <% end %>
+            <% unless @articles.size == 0 %>
+              <td></td>
+              <td class="text-secondary">
+                <input type="checkbox" id="selectAll"><small>全选或取消&nbsp</small></input>
+                <%= submit_tag "删除选中项", class: "btn btn-secondary btn-sm", id: "remove_select" %>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="text-center">
+                <%= link_to "全部取消发布", all_unrelease_articles_path, method: :delete, data: { confirm: "确定全部取消发布?" }, class: "btn btn-secondary btn-sm"%>
+                <%= link_to "全部发布", all_release_articles_path, method: :delete, data: { confirm: "确定全部发布?" }, class: "btn btn-secondary btn-sm"%>
+              </td>
+              <td class="text-center">
+                <%= link_to "全部关闭评论", close_all_comments_articles_path, method: :delete, data: { confirm: "确定全部关闭评论?" }, class: "btn btn-secondary btn-sm"%>
+                <%= link_to "全部打开评论", open_all_comments_articles_path, method: :delete, data: { confirm: "确定全部打开评论?" }, class: "btn btn-secondary btn-sm"%>
+              </td>
+            <% end -%>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= paginate @articles %>
+
+<%= content_for :javascripts do %>
+  <script>
+      $("#selectAll").select_all();
+  </script>
+<% end %>

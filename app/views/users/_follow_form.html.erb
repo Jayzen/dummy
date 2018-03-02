@@ -1,0 +1,11 @@
+<div class="card-body text-center" id="user_follow">
+  <% if logged_in? %>
+    <% if current_user.following?(@user) %>
+      <%= render 'user_unfollow' %>
+    <% else %>
+      <%= render 'user_follow' %>
+    <% end %>
+  <% else %>
+    <%= render 'user_follow' %>
+  <% end %>
+</div>

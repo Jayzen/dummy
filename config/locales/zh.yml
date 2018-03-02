@@ -1,0 +1,85 @@
+zh:
+  views:
+    pagination:
+      first: "&laquo; 首页"
+      last: "末页 &raquo;"
+      previous: "&lsaquo; 上页"
+      next: "下页 &rsaquo;"
+      truncate: "..."
+ 
+  datetime:
+    distance_in_words:
+      half_a_minute: "半分钟"  
+      less_than_x_seconds: 
+        one: "一秒内"  
+        other: "少于 %{count} 秒"  
+      x_seconds:  
+        one: "一秒"  
+        other: "%{count} 秒"  
+      less_than_x_minutes:  
+        one: "一分钟内"  
+        other: "少于 %{count} 分钟"  
+      x_minutes:  
+        one: "一分钟"  
+        other: "%{count} 分钟"  
+      about_x_hours:  
+        one: "大约一小时"  
+        other: "大约 %{count} 小时"  
+      x_hours:  
+        one:   "1 小时"  
+        other: "%{count} 小时"  
+      x_days:
+        one: "一天"
+        other: "%{count} 天"
+      about_x_months:  
+        one: "大约一个月"  
+        other: "大约 %{count} 个月"  
+      x_months:  
+        one: "一个月"  
+        other: "%{count} 个月"  
+      about_x_years:  
+        one: "大约一年"  
+        other: "大约 %{count} 年"  
+      over_x_years:  
+        one: "超过一年"  
+        other: "超过 %{count} 年"  
+      almost_x_years:  
+        one:   "将近 1 年"  
+        other: "将近 %{count} 年"       
+  activerecord:
+    attributes:
+      user:
+        name: "用户名"
+        email: "邮箱"
+        password: "密码"
+        password_confirmation: "密码确认"
+      article:
+        title: "标题"
+        content: "内容"
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "名字不能为空"
+            email:
+              blank: "邮件不能为空"
+              invalid: "邮件格式不正确"
+              taken: "该邮箱已经被注册"
+            password:
+              blank: "密码不能为空"
+              too_short: "密码字符太短"
+            password_confirmation:
+              confirmation: "两次密码不一致"
+        article:
+          attributes:
+            title:
+              blank: "标题不能为空"
+            content:
+              blank: "内容不能为空"
+            category:
+              required: "标签不能为空"
+        comment:
+          attributes:
+            content:
+              blank: "评论内容不能为空"

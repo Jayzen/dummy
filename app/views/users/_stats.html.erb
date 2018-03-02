@@ -1,0 +1,10 @@
+<div class="card-body d-flex flex-row justify-content-around">
+  <div class="d-flex flex-column">
+    <h2><p class="text-center text-primary mb-0"><%= @user.following.count %></p></h2>
+    <p class="text-center text-secondary mt-0"><small>正在关注</small></p>
+  </div>
+  <div>
+    <h2><p class="text-center text-primary mb-0"><%= @user.followers.count %></p></h2>
+    <p class="text-center mt-0 text-secondary"><small>关注者</small></p>
+  </div>
+</div>

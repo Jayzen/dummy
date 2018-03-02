@@ -1,0 +1,8 @@
+<% if @article.set_comments? %>
+  <div>
+    <%= render 'comments' %>
+  </div>
+  <div>
+    <%= render 'new_comment' %>
+  </div>
+<% end %>

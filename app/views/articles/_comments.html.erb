@@ -1,0 +1,35 @@
+<div class="card mb-3">
+  <div class="card-header text-secondary text-left">
+    <%= "共收到#{@article.comments_count}条回复" %>
+  </div>
+  <% @comments.each do |comment| %>
+    <%= div_for comment do %>
+        <div class="d-flex flex-row">
+          <div class="ml-2 mr-2">
+            <% if comment.user.avatar.to_s.size == 0 %>
+              <% if comment.user.gender == "male" %>
+                <%= image_tag "male.jpeg", size: "25x25", class: "rounded-circle" %>
+              <% else %>
+                <%= image_tag "female.jpg", size: "50x50", class: "rounded-circle" %>
+              <% end -%>  
+            <% else %>
+              <%= image_tag comment.user.avatar.large.url, size: "50x50", class: "rounded-circle" %>
+            <% end -%>
+          </div>
+          <div class="d-flex flex-column">
+            <div class="text-secondary">
+              <strong><%= link_to "#{comment.user.name}", user_path(comment.user), class: "text-secondary" %></strong>
+              <small>评论于<%= time_ago_in_words(comment.created_at) %>前</small>
+              <% if comment.user == current_user %>
+                <a href="<%= edit_comment_path(comment, article: comment.article) %>", class="text-secondary"><i class="fa fa-pencil fa-fw text-secondary"></i></a>
+                <a href="<%= comment_path(comment, article: comment.article) %>", data-method="delete", data-confirm="确定删除评论?", class="text-secondary"><i class="fa fa-trash-o fa-fw"></i></a>
+              <% end -%>
+            </div>
+            <div class="text-secondary">
+              <p><%= markdownify comment.content %></p>
+            </div>
+          </div>
+      </div>
+    <% end -%>
+  <% end -%>
+</div>

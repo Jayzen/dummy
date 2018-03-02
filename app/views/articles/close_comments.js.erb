@@ -1,0 +1,4 @@
+$("#<%=@article.id%>-set-comments").html("<%= escape_javascript(render('open_comments')) %>");
+$("#<%=@article.id%>-article-comments").html("<span class='badge badge-primary'>评论已关闭</span>");
+$("#close_comments").html("<%= escape_javascript(render('front_open_comments')) %>");
+$("#get-comments").hide();

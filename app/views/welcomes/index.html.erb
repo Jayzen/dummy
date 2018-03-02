@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-header text-secondary">
+    <%= link_to "查看更多精选文章", articles_path, class: "text-secondary" %>
+  </div>
+  <div class="card-body">
+    <% @articles.each_slice(2) do |articles| %>
+      <div class="row mb-0">
+        <% articles.each do |article| %>
+          <div class="col-md-6">
+            <div class="media">
+              <% if article.user.avatar.to_s.size == 0 %>
+                <% if article.user.gender == "male" %>
+                  <%= image_tag "male.jpeg", size: "48x48", class: "mr-3 rounded-circle" %>
+                <% else %>
+                  <%= image_tag "female.jpg", size: "48x48", class: "mr-3 rounded-circle" %>
+                <% end %>
+              <% else %>
+                <%= image_tag article.user.avatar.large.url, size: "48x48", class: "mr-3 rounded-circle" %>
+              <% end %> 
+              <div class="media-body text-secondary">
+                 <p class="mb-0">
+                 <strong><%= article.category.name %></strong>&nbsp
+                 <%=link_to "#{article.title}", article_path(article), class: "mb-0 text-secondary" %></p>
+                 <small><%=link_to "#{article.user.name}", user_path(article.user), class: "mt-0 text-secondary" %> 发表于<%= time_ago_in_words(article.created_at) %>前
+                   <% if article.comments.any? %>
+                     · <%= link_to "#{article.comments.last.user.name}", user_path(article.comments.last.user), class: "text-secondary" %>
+                     评论于<%= time_ago_in_words(article.comments.last.created_at) %>前
+                   <% end %>
+                 </small>
+               </div>
+               <div class="mt-2">
+                 <span class="badge badge-secondary"><%= "#{article.comments_count}"%></span>
+               </div>
+            </div>
+            <hr class="mt-0 mb-0">
+          </div>
+        <% end -%>
+      </div>
+    <% end -%>
+  </div>
+</div>

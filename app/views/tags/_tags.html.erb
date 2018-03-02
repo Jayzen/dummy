@@ -1,0 +1,12 @@
+<% @root_tags.each do |root_tag| %>
+  <div class="text-secondary">
+    <strong><%= root_tag.name %></strong>
+  </div>
+  <div>
+    <% root_tag.subordinates.each do |tag| %>
+      <%= link_to(tag.name, tag_path(tag), title: tag.name, data: { modal: true, id: tag.id }, class: "text-secondary mr-2") %>
+    <% end-%>
+    <hr class="mt-0 mb-0">
+  </div>
+  <br>
+<% end -%>

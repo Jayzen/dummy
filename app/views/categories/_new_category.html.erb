@@ -1,0 +1,62 @@
+<div class="col-md-10">
+  <div class="card">
+    <div class="card-header text-secondary text-center">
+      <%= @category.new_record? ? "新建标签" : "编辑标签" %>
+    </div>
+    <div class="card-body">
+      <%= form_for @category, 
+        url: (@category.new_record? ? categories_path : category_path(@category)), 
+        method: (@category.new_record? ? 'post' : 'put'), 
+        html: { class: 'form-horizontal' } do |f| %>
+        <% unless @category.errors.blank? %>
+          <div class="alert alert-danger">
+            <ul class="list-unstyled">
+              <% @category.errors.messages.values.flatten.each do |error| %>
+                <li><i class="fa fa-exclamation-circle"></i> <%= error %></li>
+              <% end -%>
+            </ul>
+          </div>
+        <% end -%>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-secondary">所属标签</label>
+          <div class="col-sm-10">
+            <select name="category[ancestry]", class="custom-select">
+              <option></option>
+              <% @root_categories.each do |category| %>
+                <% next if category == @category %>
+                <option value="<%= category.id %>" <%= @category.ancestry == category.id.to_s ? 'selected' : '' %>><%= category.name %></option>
+              <% end -%>
+            </select>
+            <p class="text-secondary"><small><strong>为空为一级分类</strong></small></p>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-secondary">标签名称</label>
+          <div class="col-sm-10">
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-secondary">标签权重</label>
+          <div class="col-sm-10">
+            <%= f.number_field :weight, min: 0, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label"></label>
+          <div class="col-sm-10">
+            <%= f.submit (@category.new_record? ? "创建标签" : "更新标签"), class: "btn btn-primary" %>
+            <%= link_to "标签列表", categories_path, class: "btn btn-primary" %>
+            <% unless @category.new_record? %>
+              <%= link_to "新建标签", new_category_path, class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<%= form_for(@user, url: unforbidden_user_path(@user), method: :post, remote: true) do |f| %>
+  <input type="hidden" name="user_id" value="<%= @user.id %>" />
+  <%= f.submit "取消禁用", class: "btn btn-secondary btn-sm" %>
+<% end %>

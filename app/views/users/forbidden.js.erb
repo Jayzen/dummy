@@ -1,0 +1,2 @@
+$("#<%=@user.id%>-set-forbidden").html("<%= escape_javascript(render('unforbidden')) %>");
+$("#<%=@user.id%>-forbidden").html("<span class='badge badge-danger'>被禁用</span>")

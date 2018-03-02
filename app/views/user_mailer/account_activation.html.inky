@@ -1,0 +1,40 @@
+<container class="header">
+  <row>
+    <columns>
+      <h1 class="text-center">Hi <%= @user.name %>,Welcome to SimpleAuth</h1>
+
+      <center>
+        <menu class="text-center">
+          <item href="#">About</item>
+          <item href="#">Course List</item>
+          <item href="#">Campus Map</item>
+          <item href="#">Contact</item>
+        </menu>
+      </center>
+
+    </columns>
+  </row>
+</container>
+
+<container class="body-border">
+  <row>
+    <columns>
+
+
+      <h4>对邮箱进行激活</h4>
+      <p><%= link_to "激活链接", edit_account_activation_url(@user.activation_token,email: @user.email) %></p>
+
+      <center>
+        <menu>
+          <item href="#">krakenacademy.com</item>
+          <item href="#">Facebook</item>
+          <item href="#">Twitter</item>
+          <item href="#">(408)-555-0123</item>
+        </menu>
+      </center>
+
+    </columns>
+  </row>
+
+  <spacer size="16"></spacer>
+</container>

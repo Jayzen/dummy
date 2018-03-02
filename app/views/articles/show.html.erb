@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-9">
+    <%= render 'article'%>
+  </div>
+  <div class="col-md-3">
+    <%= render 'right_article' %>
+  </div>
+</div>
+
+<%= content_for :javascripts do %>
+  <script>
+    var pictures, i, title, small, value, parentEl;
+    var pictures = document.getElementById("picture").getElementsByTagName("img");
+    for (i=0; i<pictures.length; i++) {
+      value = pictures[i]["alt"]
+      title = document.createElement('div');
+      small = document.createElement('small');
+      small.innerText = value;
+      small.style.textDecoration = 'underline';
+      title.appendChild(small);
+      title.className = 'text-center text-secondary';
+      insertAfter(title, pictures[i]);
+    }
+
+    for (i=0; i<pictures.length; i++) {
+      pictures[i].className = 'img-fluid mx-auto';
+    }
+
+    function insertAfter(newEl, targetEl){
+      parentEl = targetEl.parentNode;
+      if(parentEl.lastChild == targetEl){
+        parentEl.appendChild(newEl);
+      }else{
+        parentEl.insertBefore(newEl,targetEl.nextSibling);
+      }
+    }
+  </script>
+<% end %>

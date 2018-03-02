@@ -1,0 +1,21 @@
+<div class='col-md-2'>
+    <div class="card">
+      <div class="card-header text-secondary text-center">
+        个人资料设置
+      </div>
+      <div class="card-body d-flex flex-column row-hl">
+        <div class="p-1 item-hl align-self-center">
+          <a href="<%= edit_user_path(current_user) %>", class="btn <%= controller_name == 'users' ? 'btn-primary' : 'btn-outline-secondary' %>">
+            <i class="fa fa-user fa-fw"></i> 基本信息</a>
+        </div>
+        <div class="p-1 item-hl align-self-center">
+          <a href="<%= edit_password_alter_path(current_user) %>", class="btn <%= controller_name == 'password_alters' ? 'btn-primary' : 'btn-outline-secondary' %>">
+            <i class="fa fa-key fa-fw"></i> 修改密码</a>
+        </div>
+        <div class="p-1 item-hl align-self-center">
+          <a href="<%= new_portrait_path %>", class="btn <%= controller_name == 'portraits' ? 'btn-primary' : 'btn-outline-secondary' %>">
+            <i class="fa fa-file-image-o fa-fw"></i> 修改头像</a>
+        </div>
+      </div>
+    </div>
+</div>

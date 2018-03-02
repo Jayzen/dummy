@@ -1,0 +1,6 @@
+<%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
+             html: { method: :delete }, remote: true) do |f| %>
+  <button type="submit" class="btn btn-primary">
+    <i class="fa fa-user fa-fw"></i>取消关注
+  </button>
+<% end %>

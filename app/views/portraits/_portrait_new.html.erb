@@ -1,0 +1,75 @@
+<div class="col-md-8">
+  <div class="card">
+    <div class="card-header text-secondary">
+      提交头像
+    </div>
+    <div class="card-body">
+      <%= render 'shared/errors' %>
+      <%= form_for(:portrait, url: portraits_path) do |f| %>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <div class="d-flex flex-row row-hl">
+              <div class="item-hl">
+                <a href="#", class="btn btn-sm text-secondary", id="button_trigger" >
+                  <i class="fa fa-upload fa-fw"></i>头像上传
+                </a>
+              </div>
+              <div class="item-hl">
+                <p class="btn btn-sm text-secondary" id="upload_file"></p>
+              </div>
+            </div>
+            <%= f.file_field :avatar, class: "form-control text-secondary", hidden: true %>
+            <input type="hidden" name="user_id" value="<%= current_user.id %>" />
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <%= f.submit "修改头像", class: "btn btn-primary" %>
+          </div> 
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class='col-md-2'>
+  <div class="card">
+    <div class="card-header text-secondary text-center">
+      图片预览
+    </div>
+    <div class="card-body ">
+      <div class="text-center">
+        <% if @user.avatar.to_s.size == 0 %>
+          <% if @user.gender == "male" %>
+            <%= image_tag "male.jpeg", size: "100x100" %>
+          <% else %>
+            <%= image_tag "female.jpg", size: "100x100" %>
+          <% end %>
+        <% else %>
+          <%= image_tag @user.avatar.large.url, size: "100x100" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      var fileSelect = document.getElementById("button_trigger"),
+          fileElem = document.getElementById("portrait_avatar");
+
+      fileSelect.addEventListener("click", function (e) {
+        if (fileElem) {
+          fileElem.click();
+        }
+        e.preventDefault(); // prevent navigation to "#"
+      }, false);
+      
+      $("#portrait_avatar").change(function(){
+        $("#upload_file").text($("#portrait_avatar").val());
+      })
+    });
+  </script>
+<% end %>

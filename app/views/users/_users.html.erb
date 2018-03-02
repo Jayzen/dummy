@@ -1,0 +1,89 @@
+<div class="col-md-10">
+  <div class="card">
+    <div class="card-header text-secondary text-center">
+      用户列表
+    </div>
+    <div class="card-body">
+      <table class="table table-sm table-hover table-striped">
+        <%= render 'search' %>
+        <thead>
+          <tr class="text-secondary">
+            <th>用户名</th>
+            <th>邮箱</th>
+            <th>查看/编辑/删除</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @users.each do |user| %>
+            <tr class="text-secondary">
+              <td>
+                <div class="d-flex flex-row">
+                  <div>
+                    <%= user.name %>
+                  </div>
+                  <div id="<%= user.id %>-set-admin">
+                    <% if user.admin? && user.superadmin? %>
+                      <span class="badge badge-primary">超级管理员</span>
+                    <% elsif user.admin? && !user.superadmin? %>
+                      <span class="badge badge-primary">管理员</span>
+                    <% end -%>
+                  </div>
+                  <div id="<%= user.id %>-forbidden">
+                    <% if user.forbidden? %>
+                      <span class="badge badge-danger">被禁用</span>
+                    <% end -%>
+                  </div>
+                </div>
+              </td>
+              <td><%= user.email %></td>
+              <td>
+                <div class="d-flex flex-row">
+                  <div class="item-h1">
+                    <%= link_to "查看", user_path(user), class: "btn btn-secondary btn-sm" %>&nbsp
+                  </div>
+                  <% if current_user.admin? && !current_user?(user) && !user.superadmin? %>
+                    <% if current_user.admin? && !user.admin? %>
+                      <div class="item-h1">
+                        <%= link_to "删除", user, method: :delete, data: { confirm: "确定删除该用户?" }, class: "btn btn-secondary btn-sm" %>&nbsp
+                      </div> 
+                      <div class="item-h1" id="<%= user.id %>-set-forbidden">
+                        <% if user.forbidden? %>
+                          <%= render 'unforbidden', "@user": user %>
+                        <% else %>
+                          <%= render 'forbidden', "@user": user %>
+                        <% end -%>
+                      </div>&nbsp
+                    <% else current_user.superadmin? %>
+                      <div class="item-h1">
+                        <%= link_to "删除", user, method: :delete, data: { confirm: "确定删除该用户?" }, class: "btn btn-secondary btn-sm" %>&nbsp
+                      </div>
+                      <div class="item-h1" id="<%= user.id %>-set-forbidden">
+                        <% if user.forbidden? %>
+                          <%= render 'unforbidden', "@user": user %>
+                        <% else %>
+                          <%= render 'forbidden', "@user": user %>
+                        <% end -%>
+                      </div>&nbsp
+                    <% end -%>
+                    <div class="item-h1", id="<%= user.id %>-set-authorize">
+                      <% if current_user.superadmin? %>
+                        <% if user.admin? && !user.superadmin? %>
+                          <%= render 'unauthorize', "@user": user %>
+                        <% else !user.admin? && !user.superadmin? %>
+                          <%= render 'authorize', "@user": user %>
+                        <% end -%>
+                      <% end -%>
+                    </div>
+                  <% end -%>
+                </div>
+              </td>
+            </tr>
+          <% end -%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  <%= paginate @users %>
+

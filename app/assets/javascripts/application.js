@@ -1,0 +1,13 @@
+//= require rails-ujs
+//= require turbolinks
+//= require jquery3
+//= require popper
+//= require bootstrap
+//= require jcrop
+//= require avatar
+//= require select_all.js
+//= require simplemde.min
+//= require inline-attachment
+//= require codemirror-4.inline-attachment
+//= require social-share-button
+//= require social-share-button/wechat

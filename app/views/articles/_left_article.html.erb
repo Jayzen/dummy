@@ -1,0 +1,38 @@
+<div class="card text-center">
+  <div class="card-header">
+    <a href="#top" class="back-to-top text-secondary">返回页首</a>
+  </div>
+  <div class="card-body d-flex flex-column align-items-center">
+    <div class="mb-0">
+      <% if logged_in? %>
+        <% if current_user.topics.exists?(@article.id)%>
+          <i class="fa fa-heart fa-3x"></i>
+        <% else %>
+          <i class="fa fa-heart-o fa-3x"></i>
+        <% end %>
+      <% else %>
+        <i class="fa fa-heart-o fa-3x"></i>
+      <% end %>
+    </div>
+    <div class="mt-0 mb-4 text-secondary">
+      <strong>25个赞</strong>
+    </div>
+    <div class="mb-3">
+      <button type="button" class="btn btn-outline-secondary btn-sm">关注</button>
+      <button type="button" class="btn btn-outline-secondary btn-sm">收藏</button>
+    </div>
+    <div>
+      <hr>
+      <div>
+        <%= social_share_button_tag(@article.title) %>
+      </div>
+      <hr>
+    </div>
+    <div class="text-secondary">
+      <small>共收到<strong><%= "#{@article.comments_count}"%></strong>条回复</small>
+    </div>
+  </div>
+  <div class="card-footer">
+    <a href="#bottom" class="back-to-top text-secondary">返回页尾</a>
+  </div>
+</div>

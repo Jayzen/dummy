@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light mb-3" id="top">
+  <div class="container">
+  <%= link_to "SimpleAuth", root_path, class: "navbar-brand text-secondary" %>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= form_tag(articles_search_path, method: :get, class: "form-inline my-2 my-lg-0") do %>
+              <%= text_field_tag :term, params[:term], placeholder: "文章搜索...", class: "form-control mr-sm-2 text-secondary" %>
+            <% end %>
+          </li>
+        </ul>
+      </div> 
+      <ul class="navbar-nav">
+        <% if logged_in? %>
+          <li class="nav-item">
+            <a href="<%= tags_path %>", class="nav-link text-secondary">
+              <i class="fa fa-tag" aria-hidden="true"></i>分类
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<%= new_article_path %>", class="nav-link text-secondary">
+              <i class="fa fa-plus" aria-hidden="true"></i>发文
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="<%= notifications_path %>", class="nav-link">
+              <i class="fa fa-bell fa-fw"></i>
+            </a>
+          </li>
+
+          <% unless current_user.notifications.unread.size == 0 %>
+            <li class="nav-item">
+              <a href="<%= read_notifications_path %>", class="nav-link text-secondary">
+                <span class="badge badge-secondary mb-1"><%= current_user.notifications.unread.size %></span>
+              </a>
+            </li>
+          <% end %>
+
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+              <% if current_user.avatar.to_s.size == 0 %>
+                <% if current_user.gender == "male" %>
+                  <%= image_tag "male.jpeg", size: "25x25", class: "rounded-circle" %>
+                <% else %>
+                  <%= image_tag "female.jpg", size: "25x25", class: "rounded-circle" %>
+                <% end %>
+              <% else %>
+                <%= image_tag current_user.avatar.large.url, size: "25x25", class: "rounded-circle" %>
+              <% end %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <%= link_to "#{current_user.name}", user_path(current_user), class: "dropdown-item text-secondary" %>
+              <div class="dropdown-divider"></div>
+                <%= link_to "个人资料设置", edit_user_path(current_user), class: "dropdown-item text-secondary" %>
+                <%= link_to "文章列表", articles_path, class: "dropdown-item text-secondary" %>
+                <% if current_user.admin? %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "管理员设置", users_path, class: "dropdown-item text-secondary" %>
+                <% end %>  
+                <div class="dropdown-divider"></div>
+                <%= link_to "退出", logout_path, method: "delete", class: "dropdown-item text-secondary" %>
+              </div>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "注册", signup_path, class: "nav-link" %>
+            </li class="nav-item">
+            <li class="nav-item">
+              <%= link_to "登录", login_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+  </div>
+</nav>
+
+

@@ -1,0 +1,31 @@
+  <div class='col-md-8'>
+    <div class="card">
+      <div class="card-header text-secondary">
+         待裁剪图片
+      </div>
+      <div class="card-body">
+        <%= image_tag @user.avatar_url(:large), id: "cropbox" %>
+        <br>
+        <%= form_for(:portrait, url: portrait_path(@user), method: :put) do |f| %>
+          <% %w[x y w h].each do |attribute| %>
+            <%= f.hidden_field "crop_#{attribute}", id: "portrait_crop_#{attribute}" %>
+          <% end %>
+          <input type="hidden" name="user_id" value="<%= current_user.id %>" />
+          <%= f.submit "提交裁剪", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-md-2'>
+    <div class="card">
+      <div class="card-header text-secondary text-center">
+        图片预览
+      </div>
+      <div class="card-body">
+        <div style="width:100px; height:100px; overflow:hidden; margin:auto">
+          <%= image_tag @user.avatar.url(:large), id: "preview" %>
+        </div>
+      </div>
+    </div>
+  </div>

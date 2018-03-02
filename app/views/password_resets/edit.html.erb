@@ -1,0 +1,24 @@
+  <%= render 'shared/errors' %>
+  <%= form_for(@user, url: password_reset_path(params[:id]) ) do |f| %>
+    <%= hidden_field_tag :email, @user.email %>  
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">密码</label>
+      <div class="col-sm-10">
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+    </div>
+   
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">密码确认</label>
+      <div class="col-sm-10">
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label"></label>
+      <div class="col-sm-10">
+        <%= f.submit "密码重置", class: "btn btn-primary"%>
+      </div> 
+    </div>
+<% end %>

@@ -1,0 +1,2 @@
+$("#<%=@article.id%>-release").html("<%= escape_javascript(render('unrelease')) %>");
+$("#<%=@article.id%>-article").html("<span class='badge badge-primary'>已发布</span>")

@@ -1,0 +1,84 @@
+<%= form_for(@comment, url: comment_path(@comment), method: 'put') do |f| %>
+  <%= render 'errors' %>
+  <div class="form-group">
+    <%= content_for :javascripts do %>
+      <script>
+        var simplemde = new SimpleMDE({
+          toolbar: [{
+			      name: "bold",
+			      action: SimpleMDE.toggleBold,
+			      className: "fa fa-bold",
+			      title: "Bold",
+	        },
+          {
+			      name: "italic",
+			      action: SimpleMDE.toggleItalic,
+			      className: "fa fa-italic",
+			      title: "Italic",
+	        },
+          {
+       			name: "heading",
+       			action: SimpleMDE.toggleHeadingSmaller,
+       			className: "fa fa-header",
+       			title: "Heading",
+       	  },
+          "|",
+          {
+			      name: "quote",
+			      action: SimpleMDE.toggleBlockquote,
+			      className: "fa fa-quote-left",
+			      title: "Quote",
+		      },
+          {
+       			name: "unordered-list",
+       			action: SimpleMDE.toggleUnorderedList,
+       			className: "fa fa-list-ul",
+       			title: "Generic List",
+       	  },
+          {
+       			name: "ordered-list",
+       			action: SimpleMDE.toggleOrderedList,
+       			className: "fa fa-list-ol",
+       			title: "Numbered List",
+       	  },
+          "|",
+          {
+       			name: "link",
+       			action: SimpleMDE.drawLink,
+       			className: "fa fa-link",
+       			title: "Create Link",
+       	  },
+          "|",
+          {
+       			name: "preview",
+       			action: SimpleMDE.togglePreview,
+       			className: "fa fa-eye no-disable",
+       			title: "Toggle Preview",
+       	  },
+          {
+       			name: "side-by-side",
+       			action: SimpleMDE.toggleSideBySide,
+       			className: "fa fa-columns no-disable no-mobile",
+       			title: "Toggle Side by Side",
+       	  },
+          {
+       			name: "fullscreen",
+       			action: SimpleMDE.toggleFullScreen,
+       			className: "fa fa-arrows-alt no-disable no-mobile",
+       			title: "Toggle Fullscreen",
+       	  }
+
+          ]
+        });
+      </script>
+    <% end %> 
+    <%= f.text_area :content, class:"form-control", rows: 15 %>
+    <%= hidden_field_tag :article, @comment.article.id %> 
+  </div>
+  <div class="form-group">
+    <%= f.submit "评论更新", class: "btn btn-outline-secondary"%>
+    <%= link_to "返回文章", article_path(@comment.article), class: "btn btn-outline-secondary"%>
+  </div>
+<% end %>
+
+

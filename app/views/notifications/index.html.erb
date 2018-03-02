@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex flex-row justify-content-between row-hl">
+      <div class="item-hl text-secondary">所有通知</div>
+      <div class="item-h1">
+        <%= link_to "删除", remove_notifications_path, class: "btn btn-danger btn-sm", id: "remove_btn", remote: true %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <%= render 'comments' %>
+  </div>
+</div>
+
+<%= content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      $("#remove_btn").click(function(){
+        $("#card-body").hide();
+        $(".notifications_count").hide();
+      });
+    });
+  </script>
+<% end %>

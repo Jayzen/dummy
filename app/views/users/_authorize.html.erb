@@ -1,0 +1,3 @@
+<%= form_for(@user, url: authorize_user_path(@user), method: :post, remote: true) do |f| %>
+  <%=f.submit "设为管理员", class: "btn btn-secondary btn-sm" %>
+<% end %>
