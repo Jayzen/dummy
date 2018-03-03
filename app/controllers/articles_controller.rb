@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy,
+                                     :release, :unrelease, :comments_set, :open_comments, :close_comments]
   before_action :logged_in_user, except: [:show]
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :fetch_categories, only: [:new, :create, :edit, :update]
@@ -18,7 +19,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    render 'new'
+    render :new
   end
 
   def create
@@ -42,7 +43,7 @@ class ArticlesController < ApplicationController
       render :edit
     end
   end
-  
+
   def index
     @articles = current_user.articles.order("created_at desc").page(params[:page]).per(10)
   end
@@ -65,10 +66,7 @@ class ArticlesController < ApplicationController
 
   def remove_select
     unless params[:article_ids].nil?
-      @articles = Article.find(params[:article_ids])
-      @articles.each do |article|
-        article.destroy
-      end
+      Article.where(id: params[:article_ids]).destroy_all #不能使用delete_all,其不会更新关联项
       redirect_to articles_url
       flash[:success] = '选中的文章被全部删除!'
     else
@@ -78,44 +76,43 @@ class ArticlesController < ApplicationController
   end
 
   def release
-    @article = Article.friendly.find(params[:id])
     @article.toggle!(:status)
 
     respond_to do |format|
-      format.html { redirect_to articles_path }
       format.js
     end
   end
 
   def unrelease
-    @article = Article.friendly.find(params[:id])
     @article.toggle!(:status)
+
     respond_to do |format|
-      format.html { redirect_to articles_path }
       format.js
     end
   end
 
+  def comments_set
+    @article.toggle!(:set_comments)
+    params[:set_comments] == "true" ? flash[:success] = "评论已经关闭!" : flash[:success] = "评论已经打开!"
+    redirect_to article_path(@article)
+  end
+
   def open_comments
-    @article = Article.friendly.find(params[:id])
     @article.toggle!(:set_comments)
 
     respond_to do |format|
-      format.html { redirect_to articles_path }
       format.js
     end
   end
 
   def close_comments
-    @article = Article.friendly.find(params[:id])
     @article.toggle!(:set_comments)
 
     respond_to do |format|
-      format.html { redirect_to articles_path }
       format.js
     end
   end
-
+ 
   def close_all_comments
     current_user.articles.update_all(set_comments: false)
     redirect_to articles_path
@@ -125,7 +122,7 @@ class ArticlesController < ApplicationController
     current_user.articles.update_all(set_comments: true)
     redirect_to articles_path
   end
-  
+
   private
     def set_article
       @article = Article.includes(:user).friendly.find(params[:id])

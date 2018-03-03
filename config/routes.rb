@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       delete :remove_select, :all_unrelease, :all_release, :close_all_comments, :open_all_comments
     end
     member do
-      get :release, :unrelease, :open_comments, :close_comments
+      get :release, :unrelease, :comments_set, :open_comments, :close_comments
     end
   end
   get 'articles_search', to: "welcomes#articles_search"

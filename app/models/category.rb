@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: categories
+#
+#  id                 :integer          not null, primary key
+#  name               :string
+#  ancestry           :integer
+#  weight             :integer          default(0)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  subordinates_count :integer          default(0)
+#
+# Indexes
+#
+#  index_categories_on_ancestry  (ancestry)
+#  index_categories_on_name      (name)
+#
+
 class Category < ApplicationRecord
   has_ancestry orphan_strategy: :destroy
   before_validation :correct_ancestry

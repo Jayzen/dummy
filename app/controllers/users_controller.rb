@@ -58,7 +58,6 @@ class UsersController < ApplicationController
     @user.toggle!(:admin)
 
     respond_to do |format|
-      format.html { redirect_to @user }
       format.js
     end
   end
@@ -68,7 +67,6 @@ class UsersController < ApplicationController
     @user.toggle!(:forbidden)
 
     respond_to do |format|
-      format.html { redirect_to users_path }
       format.js
     end
   end
@@ -78,7 +76,6 @@ class UsersController < ApplicationController
     @user.toggle!(:forbidden)
 
     respond_to do |format|
-      format.html { redirect_to users_path }
       format.js
     end
   end
@@ -87,7 +84,6 @@ class UsersController < ApplicationController
     @user.toggle!(:admin)
 
     respond_to do |format|
-      format.html { redirect_to @user }
       format.js
     end 
   end

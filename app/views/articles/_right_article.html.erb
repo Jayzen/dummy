@@ -5,7 +5,7 @@
   <div class="card-body d-flex flex-column align-items-center">
     <div class="mb-0" id="like">
       <% if logged_in? %>
-        <% if current_user.like_topics.exists?(@article.id)%>
+        <% if current_user.like_topics.include?(@article)%>
           <%= render 'unlike' %>
         <% else %>
           <%= render 'like' %>
@@ -20,7 +20,7 @@
     <div class="d-flex flex-row justify-content-center">
       <div id="follow">
         <% if logged_in? %>
-          <% if current_user.follow_topics.exists?(@article.id)%>
+          <% if current_user.follow_topics.include?(@article)%>
             <%= render 'unfollow' %>
           <% else %>
             <%= render 'follow' %>
@@ -31,7 +31,7 @@
       </div>
       <div id="keep">
         <% if logged_in? %>
-          <% if current_user.keep_topics.exists?(@article.id)%>
+          <% if current_user.keep_topics.pluck(:id).include?(@article.id)%>
             <%= render 'unkeep' %>
           <% else %>
             <%= render 'keep' %>
