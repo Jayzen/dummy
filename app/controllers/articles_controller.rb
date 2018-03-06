@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
       redirect_to @article
       flash[:success] = '文章更新成功!'
     else
-      render :edit
+      render :new
     end
   end
 
@@ -129,7 +129,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :content, :status, :category_id)
+      params.require(:article).permit(:title, :content, :status, :category_id, :set_comments)
       #params.require(:article).permit(:title, :content, {article_ids: []})
     end
 

@@ -3,7 +3,6 @@
 @import "jcrop";
 @import "simplemde.min";
 @import "social-share-button";
-@import 'rails_emoji_picker';
 
 .comment {
   border-top: 1px solid #ccc;
@@ -31,4 +30,12 @@ i.red {
   margin-right: auto;
 }
 
+/**
+.dropdown-menu-right {
+  z-index: 100;
+}
 
+#fix-behind {
+  z-index: -1;
+}
+**/

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
                                    :authorize, :unauthorize,
                                    :avatar_new, :avatar_create, :avatar_update,
                                    :likes, :follows, :keeps, :following, :followers]
-  before_action :logged_in_user, only: [:edit, :update, :destroy, :show, :search,
+  before_action :logged_in_user, only: [:edit, :update, :destroy, :show, :search, :index,
                                         :avatar_create, :avatar_update, :avatar_new]
   before_action :correct_user, only: [:edit, :update,
                                    :avatar_create, :avatar_update, :avatar_new]
