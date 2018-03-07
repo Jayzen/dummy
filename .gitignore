@@ -6,3 +6,5 @@ db/*.sqlite3-journal
 log/*.log
 tmp/
 public/uploads
+/storage/*
+/config/master.key
