@@ -1,7 +1,7 @@
 <% @users.each_slice(4) do |users| %>
   <div class="d-flex flex-row justify-content-between mt-4 ml-4 mr-4">
     <% users.each do |user| %>
-      <div class="d-flex flex-row">
+      <div class="d-flex flex-column">
         <div class="mr-1">
           <% if user.avatar.to_s.size == 0 %>
             <% if user.gender == "male" %>
@@ -13,11 +13,9 @@
             <%= image_tag user.avatar.large.url, size: "64x64", class: "rounded-circle" %>
           <% end -%>
         </div>
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column text-center">
           <div>
-            <%= link_to "#{user.name}", user_path(user), class: "text-dark font-weight-bold" %>
-          </div>
-          <div id="follow">
+            <small><%= link_to user.name, user_path(user), class: "text-secondary" %></small>
           </div>
         </div>
       </div>

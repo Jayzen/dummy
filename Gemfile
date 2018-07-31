@@ -28,11 +28,11 @@ gem 'gemoji'
 gem 'sanitize'
 gem 'commonmarker'
 gem 'github-linguist'
-
+gem 'sidekiq'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.0.rc1'
+gem 'rails', '~> 5.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -70,7 +70,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 2.15'
+  gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   gem 'faker'

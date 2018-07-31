@@ -37,6 +37,7 @@ Rails.application.configure do
 
   config.active_storage.service = :local
 
+  #config.active_job.queue_adapter = :sidekiq
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
 

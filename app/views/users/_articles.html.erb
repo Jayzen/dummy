@@ -3,7 +3,7 @@
     <% @articles.each do |article| %>
       <tbody>
         <tr>
-          <td class="text-left text-secondary"><small><%= article.category.name %></small></td>
+          <td class="text-left"><small><%= link_to article.category.name, tag_path(article.category), class: "text-secondary" %></small></td>
           <td class="text-secondary"><%= link_to "#{article.title}", article_path(article), class: "text-secondary"%>&nbsp<small><%= article.created_at.strftime("%Y年%m月%d日") %></small></td>
           <td class="text-right text-secondary"><small><%= article.comments_count %>/<%= article.likes_count %></small></td>
         </tr>

@@ -19,8 +19,8 @@
               <% end %> 
               <div class="media-body text-secondary">
                  <p class="mb-0">
-                 <strong><%= article.category.name %></strong>&nbsp
-                 <%=link_to "#{article.title}", article_path(article), class: "mb-0 text-secondary" %></p>
+                 <%= link_to article.category.name, tag_path(article.category), class: "text-secondary" %>&nbsp
+                 <strong><%=link_to "#{article.title}", article_path(article), class: "mb-0 text-secondary" %></strong></p>
                  <small><%=link_to "#{article.user.name}", user_path(article.user), class: "mt-0 text-secondary" %> 发表于<%= time_ago_in_words(article.created_at) %>前
                    <% if article.comments.any? %>
                      · <%= link_to "#{article.comments.last.user.name}", user_path(article.comments.last.user), class: "text-secondary" %>
