@@ -3,6 +3,10 @@ class WelcomesController < ApplicationController
     @articles = Article.includes(:category,:user, {comments: :user}).order("created_at desc").page(params[:page])
   end
 
+  def lists
+    @articles = Article.includes(:category,:user, {comments: :user}).order("created_at desc").page(params[:page])
+  end
+
   def users_search
     case params[:category]
       when 'email'

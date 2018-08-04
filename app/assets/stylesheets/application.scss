@@ -30,6 +30,15 @@ i.red {
   margin-right: auto;
 }
 
+.page-link{
+  color: #6c757d !important;
+}
+
+.page-item.active .page-link{
+  background-color: rgba(0, 0, 0, 0.03);
+  border-color: #6c757d !important;
+}
+
 /**
 .dropdown-menu-right {
   z-index: 100;

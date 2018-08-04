@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header text-secondary">
-    <%= link_to "查看更多分类", tags_path, class: "text-secondary" %>
+    <p class="mt-0 mb-0">精选文章</p>
   </div>
   <div class="card-body">
     <% @articles.each_slice(2) do |articles| %>
@@ -8,7 +8,6 @@
         <% articles.each do |article| %>
           <div class="col-md-6">
             <div class="media">
-              
               <% if article.user.avatar.to_s.size == 0 %>
                 <% if article.user.gender == "male" %>
                   <%= image_tag "male.jpeg", size: "48x48", class: "mr-3 rounded-circle" %>
@@ -18,11 +17,10 @@
               <% else %>
                 <%= image_tag article.user.avatar.large.url, size: "48x48", class: "mr-3 rounded-circle" %>
               <% end %> 
-
-               <div class="media-body text-secondary">
+              <div class="media-body text-secondary">
                  <p class="mb-0">
-                 <strong><%= article.category.name %></strong>&nbsp
-                 <%=link_to "#{truncate(article.title)}", article_path(article), class: "mb-0 text-secondary" %></p>
+                 <%= link_to article.category.name, tag_path(article.category), class: "text-secondary" %>&nbsp
+                 <strong><%=link_to "#{truncate(article.title)}", article_path(article), class: "mb-0 text-secondary" %></strong></p>
                  <small><%=link_to "#{article.user.name}", user_path(article.user), class: "mt-0 text-secondary" %> 发表于<%= time_ago_in_words(article.created_at) %>前
                    <% if article.comments.any? %>
                      · <%= link_to "#{article.comments.last.user.name}", user_path(article.comments.last.user), class: "text-secondary" %>
@@ -34,13 +32,13 @@
                  <span class="badge badge-secondary"><%= "#{article.comments_count}"%></span>
                </div>
             </div>
+            <hr class="mt-0 mb-0">
           </div>
         <% end -%>
       </div>
-      <hr class="mt-0 mb-0">
     <% end -%>
   </div>
 </div>
 <div>
-    <%= paginate @articles %>
+  <%= paginate @articles %>
 </div>

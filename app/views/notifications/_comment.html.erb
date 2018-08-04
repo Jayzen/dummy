@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-start">
+  <div class="text-secondary">
+    <small><%= notification.created_at.localtime.strftime("%T") %>:&nbsp&nbsp </small>
+  </div>
+  <div class="d-flex flex-column">
+    <div class="text-secondary">
+      <%= link_to notification.actor.name, main_app.user_path(notification.actor), class: "text-secondary" %> <small>在帖子</small>
+      <%= link_to notification.second_target.title, main_app.article_path(notification.second_target), class: "text-secondary" %><small> 评论了: </small>
+    </div>
+    <div class="text-secondary mb-0 mt-0">
+      <%= markdownify notification.target.content %>
+    </div>
+  </div>
+</div>

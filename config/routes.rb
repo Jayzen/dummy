@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Notifications::Engine => "/notifications"
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
@@ -28,12 +29,9 @@ Rails.application.routes.draw do
     end
   end
   get 'articles_search', to: "welcomes#articles_search"
+  get 'lists', to: "welcomes#lists"
   resources :categories
   resources :comments
-  resources :notifications do
-    get 'read', on: :collection
-    get 'remove', on: :collection
-  end
   resources :tags
   resources :pictures, only: [:create]
   resources :likes, only: [:create, :destroy]

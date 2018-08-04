@@ -8,7 +8,7 @@
           <div class="ml-2 mr-2">
             <% if comment.user.avatar.to_s.size == 0 %>
               <% if comment.user.gender == "male" %>
-                <%= image_tag "male.jpeg", size: "25x25", class: "rounded-circle" %>
+                <%= image_tag "male.jpeg", size: "50x50", class: "rounded-circle" %>
               <% else %>
                 <%= image_tag "female.jpg", size: "50x50", class: "rounded-circle" %>
               <% end -%>  

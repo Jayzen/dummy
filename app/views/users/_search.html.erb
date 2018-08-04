@@ -4,5 +4,6 @@
       <%= select_tag "category", raw("<option value='email'>邮箱</option><option value='name' selected>用户名</option>"), class: "custom-select text-secondary"%>
     </div>
     <%= text_field_tag :search, nil, placeholder: "输入用户名或邮箱..", class: "form-control" %>
+    <%= submit_tag "搜索" %>
   <% end %>
 </div>

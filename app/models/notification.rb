@@ -2,21 +2,29 @@
 #
 # Table name: notifications
 #
-#  id              :integer          not null, primary key
-#  recipient_id    :integer
-#  actor_id        :integer
-#  read_at         :datetime
-#  action          :string
-#  notifiable_id   :integer
-#  notifiable_type :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                 :integer          not null, primary key
+#  user_id            :integer          not null
+#  actor_id           :integer
+#  notify_type        :string           not null
+#  target_type        :string
+#  target_id          :integer
+#  second_target_type :string
+#  second_target_id   :integer
+#  third_target_type  :string
+#  third_target_id    :integer
+#  read_at            :datetime
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+# Indexes
+#
+#  index_notifications_on_user_id                  (user_id)
+#  index_notifications_on_user_id_and_notify_type  (user_id,notify_type)
 #
 
-class Notification < ApplicationRecord
-  belongs_to :recipient, class_name: 'User', counter_cache: true
-  belongs_to :actor, class_name: 'User'
-  belongs_to :notifiable, polymorphic: true
+# Auto generate with notifications gem.
+class Notification < ActiveRecord::Base
+  include Notifications::Model
 
-  scope :unread, -> { where(read_at: nil) }
+  # Write your custom methods...
 end

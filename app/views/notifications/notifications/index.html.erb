@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex flex-row justify-content-between row-hl">
+      <div class="item-hl text-secondary">所有通知</div>
+      <div class="item-h1">
+        <%= link_to "清除通知", notifications.clean_notifications_path, class: "btn btn-danger btn-sm", method: 'delete' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="notifications row">
+      <div class="list container">
+        <% if @notifications.blank? %>
+          <div class="text-secondary"><%= "没有通知" %></div>
+        <% else %>
+          <% @notification_groups.each do |group, notifications| %>
+            <div class="notification-group mb-2">
+              <div class="text-secondary"><%= group %></div>
+              <%= render notifications %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <%= paginate @notifications %>
+    </div> 
+  </div>
+</div>
