@@ -10,9 +10,7 @@ class PasswordResetsController < ApplicationController
     @user = User.find_by(email: params[:password_reset][:email].downcase)
     if @user
       @user.create_reset_digest
-      UserMailer.password_reset(@user, reset_token: @user.reset_token).deliver_later
-      
-      #@user.send_password_reset_email
+      UserMailer.password_reset(@user, @user.reset_token).deliver_later
       flash[:danger] = "密码重置链接已经发送至邮箱中!"
       redirect_to root_url
     else

@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      UserMailer.account_activation(user, activation_token: user.activation_token).deliver_later
+      UserMailer.account_activation(user, user.activation_token).deliver_later
       flash[:danger] = "查看邮箱，进行激活"
       redirect_to root_path
     else
