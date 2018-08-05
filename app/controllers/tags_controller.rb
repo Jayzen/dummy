@@ -6,7 +6,7 @@ class TagsController < ApplicationController
 
   def show
     @tag = Category.includes(articles: [:user, { comments: :user }]).find(params[:id])
-    @articles = @tag.articles.page(params[:page])
+    @articles = @tag.articles.where(status: true).page(params[:page])
   end
 
   private

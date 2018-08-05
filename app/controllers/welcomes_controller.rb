@@ -1,10 +1,10 @@
 class WelcomesController < ApplicationController
   def index
-    @articles = Article.includes(:category,:user, {comments: :user}).order("created_at desc").page(params[:page])
+    @articles = Article.includes(:category,:user, {comments: :user}).where(status: true).order("created_at desc").page(params[:page])
   end
 
   def lists
-    @articles = Article.includes(:category,:user, {comments: :user}).order("created_at desc").page(params[:page])
+    @articles = Article.includes(:category,:user, {comments: :user}).where(status: true).order("created_at desc").page(params[:page])
   end
 
   def users_search

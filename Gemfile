@@ -31,6 +31,8 @@ gem 'github-linguist'
 gem 'sidekiq'
 gem 'rouge'
 gem 'notifications'
+gem 'redis-rails'
+gem 'mysql2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'

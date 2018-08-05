@@ -2,11 +2,11 @@
 #
 # Table name: articles
 #
-#  id             :integer          not null, primary key
-#  title          :string
-#  content        :text
+#  id             :bigint(8)        not null, primary key
+#  title          :string(255)
+#  content        :text(65535)
 #  user_id        :integer
-#  slug           :string
+#  slug           :string(255)
 #  category_id    :integer
 #  view_count     :integer          default(0)
 #  comments_count :integer          default(0)

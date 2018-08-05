@@ -5,12 +5,12 @@
 #  id                 :integer          not null, primary key
 #  user_id            :integer          not null
 #  actor_id           :integer
-#  notify_type        :string           not null
-#  target_type        :string
+#  notify_type        :string(255)      not null
+#  target_type        :string(255)
 #  target_id          :integer
-#  second_target_type :string
+#  second_target_type :string(255)
 #  second_target_id   :integer
-#  third_target_type  :string
+#  third_target_type  :string(255)
 #  third_target_id    :integer
 #  read_at            :datetime
 #  created_at         :datetime         not null
